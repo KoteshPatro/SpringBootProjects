@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.Journal;
@@ -30,4 +31,14 @@ public class JournalController
 	{
 		return repo.findAll();
 	}
+	
+	@RequestMapping(value="/getJournal",produces={ MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@ResponseBody
+	public Journal  findJournal(@RequestParam("id") String id){
+		
+		return repo.findOne(new Long(id));
+		
+	}
+	
+	
 }
